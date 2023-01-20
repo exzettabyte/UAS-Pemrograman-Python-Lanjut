@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Watermark</h1><br>
+<form action="/" method="post" enctype=multipart/form-data>
+<h1>Select mode</h1>
+  <input type="radio" id="single" name="mode" value="single" checked>
+  <label for="single">Single Image</label>
+  <input type="radio" id="multiple" name="mode" value="multiple">
+  <label for="multiple">Multiple Images</label><br><br>
+<h2>Upload image which will be watermarked (jpg,jpeg,png if single mode and zip if multiple mode)</h2>
+  <input class="input" type="file" name="file" id="file">
+  <h2>Upload watermark (png)</h2>
+  <input class="input" type="file" name="file2" id="file2">
+  <br><br>
+  <input class="button is-primary" type="submit" value="Send">
+</form>
+
+{% if notvalid == "1" %}
+  <br>
+  <h2>Only jpg, jpeg and png are allowed!</h2>
+{% endif %}
+
+{% if notvalid == "2" %}
+  <br>
+  <h2>Only zip allowed!</h2>
+{% endif %}
+
+{% if notvalid == "3" %}
+  <br>
+  <h2>No image yet</h2>
+{% endif %}
+
+{% if file_url is not none %}
+  <br>
+  <a href="{{ file_url }}">Download</a>
+{% endif %}
+
+{% endblock %}
